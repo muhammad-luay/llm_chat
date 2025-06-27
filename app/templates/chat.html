@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Chat{% endblock %}
+{% block body %}
+<h2>Chat</h2>
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    {{ form.model.label }} {{ form.model(class="form-select") }}
+  </div>
+  <div class="mb-3">
+    {{ form.prompt.label }} {{ form.prompt(class="form-control", rows=4) }}
+  </div>
+  {{ form.submit(class="btn btn-primary") }}
+</form>
+
+{% if messages %}
+<hr>
+<h4>Latest exchange</h4>
+<div class="card mb-2">
+  <div class="card-body"><strong>You:</strong> {{ messages[0].content }}</div>
+</div>
+<div class="card">
+  <div class="card-body bg-light"><strong>AI:</strong> {{ messages[1].content }}</div>
+</div>
+{% endif %}
+{% endblock %}

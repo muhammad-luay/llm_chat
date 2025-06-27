@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ provider.name }} models{% endblock %}
+{% block body %}
+<h2>{{ provider.name|capitalize }} – enable models</h2>
+<form method="POST">
+  <ul class="list-group">
+    {% for m in provider.models %}
+      <li class="list-group-item">
+        <input class="form-check-input me-1" type="checkbox"
+               name="{{ m.id }}" id="m{{ m.id }}" {% if m.enabled %}checked{% endif %}>
+        <label class="form-check-label" for="m{{ m.id }}">{{ m.model_id }}</label>
+      </li>
+    {% endfor %}
+  </ul>
+  <button class="btn btn-success mt-3">Save</button>
+</form>
+{% endblock %}
